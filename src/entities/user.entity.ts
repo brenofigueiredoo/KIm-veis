@@ -4,13 +4,16 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 import { Exclude } from "class-transformer";
+import { SchedulesUserProperties } from "./schedulesUserProperties.entity";
 
 @Entity("users")
 export class User {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column()
@@ -34,6 +37,9 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => SchedulesUserProperties, (schedule) => schedule.user)
+  schedules: SchedulesUserProperties[];
 
   constructor() {
     if (!this.id) {

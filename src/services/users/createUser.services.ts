@@ -1,8 +1,8 @@
-import { hashSync } from "bcrypt";
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { AppError } from "../../errors/AppError";
 import { IUser } from "../../interfaces/users";
+import { hashSync } from "bcryptjs";
+import { AppError } from "../../errors/AppError";
 
 const createUserService = async ({
   name,
@@ -16,7 +16,7 @@ const createUserService = async ({
   const userRepository = AppDataSource.getRepository(User);
 
   if (!name || !email || !password) {
-    throw new AppError("Name, email, password, isAdm is missing");
+    throw new AppError("name or email or password or isAdm is missing", 400);
   }
 
   const emailAlreadyExists = await userRepository.findOneBy({
@@ -24,7 +24,7 @@ const createUserService = async ({
   });
 
   if (emailAlreadyExists) {
-    throw new AppError("Email already exists");
+    throw new AppError("Email already exists", 400);
   }
 
   const hashedPassword = hashSync(password, 10);
@@ -41,6 +41,17 @@ const createUserService = async ({
 
   await userRepository.save(user);
 
-  return user;
+  const returbUser = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    isAdm: user.isAdm,
+    isActive: user.isActive,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
+
+  return returbUser;
 };
+
 export default createUserService;

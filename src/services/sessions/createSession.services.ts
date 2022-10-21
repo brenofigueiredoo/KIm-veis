@@ -1,10 +1,10 @@
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
-import { AppError } from "../../errors/AppError";
 import { IUserLogin } from "../../interfaces/users";
-import { compare } from "bcrypt";
+import { User } from "../../entities/user.entity";
+import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+import { AppError } from "../../errors/AppError";
 
 const createSessionService = async ({
   email,
@@ -17,13 +17,13 @@ const createSessionService = async ({
   });
 
   if (!user) {
-    throw new AppError("Email or password invalid");
+    throw new AppError("Invalid user or password", 403);
   }
 
   const passwordMatch = await compare(password, user.password);
 
   if (!passwordMatch) {
-    throw new AppError("Email or password invalid");
+    throw new AppError("Invalid user or password", 403);
   }
 
   const token = jwt.sign(
@@ -39,4 +39,5 @@ const createSessionService = async ({
 
   return token;
 };
+
 export default createSessionService;
