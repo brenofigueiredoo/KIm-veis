@@ -22,12 +22,6 @@ const listSchedulesPropertiesIdServices = async (id: string) => {
     throw new AppError("Properties not found", 404);
   }
 
-  const schedules = await schedulesRepository.find({
-    where: {
-      properties: properties,
-    },
-  });
-
   return properties;
 };
 export default listSchedulesPropertiesIdServices;

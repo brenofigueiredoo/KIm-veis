@@ -5,7 +5,6 @@ import { AppError } from "../../errors/AppError";
 
 const listCategoriesIdPropertiesService = async (id: string) => {
   const categoriesRepository = AppDataSource.getRepository(Categories);
-  const propertiesRepository = AppDataSource.getRepository(Properties);
 
   const category = await categoriesRepository.findOne({
     where: {

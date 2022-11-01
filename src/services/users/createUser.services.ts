@@ -41,17 +41,7 @@ const createUserService = async ({
 
   await userRepository.save(user);
 
-  const returbUser = {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    isAdm: user.isAdm,
-    isActive: user.isActive,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
-  };
-
-  return returbUser;
+  return user;
 };
 
 export default createUserService;

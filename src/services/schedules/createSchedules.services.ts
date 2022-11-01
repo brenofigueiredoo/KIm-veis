@@ -17,7 +17,6 @@ const createSchedulesServices = async (
   const userRepository = AppDataSource.getRepository(User);
   const propertiesRepository = AppDataSource.getRepository(Properties);
 
-  const newMonth = Number(date.split("/")[1]);
   const newHour = Number(hour.split(":")[0]);
 
   const getDay = new Date(data.date).getDay();
@@ -39,14 +38,6 @@ const createSchedulesServices = async (
 
   if (hourDisponivel) {
     throw new AppError("Horário não disponível", 400);
-  }
-
-  let mesCorreto = "0";
-
-  if (newMonth > 10) {
-    mesCorreto = `${newMonth}`;
-  } else {
-    mesCorreto = `0${newMonth}`;
   }
 
   const user = await userRepository.findOneBy({
