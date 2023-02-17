@@ -112,3 +112,6 @@ Após rodar um dos comandos aparecerá um log no seu terminal, contendo as infor
 
 
 ### Agora que já sabe como iniciar o seu projeto e rodar os testes, é hora de colocar a mão no código!
+
+- #### Diagrama DER
+![image](https://user-images.githubusercontent.com/80117189/219662120-0f4a9d45-1c7c-426e-82b5-5b71a38aa031.png)
