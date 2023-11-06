@@ -1,11 +1,21 @@
-# S5-19 | 🏁 Entrega: KImóveis - TypeORM com Relacionamentos
+> Repositório de projeto Back-End desenvolvido em NodeJs.
+ <br />
+ 
+# KImóveis📚
 
-Para inciar este projeto, é necessário instalar as dependências, que serão utilizadas nos testes. Portanto utilize o comando abaixo para instalar tais dependências:
+- **Aplicação back-end responsável por gerenciar uma imobiliária, onde é possível realizar o cadastro de imóveis e de usuários interessados na aquisição de propriedades.**
 
-````
+- **Além disso, é possível realizar o agendamento e consultar horários de visitas às propriedades disponíveis no banco de dados da imobiliária.**
+
+
+### Rodando localmente:
+
+#### 1. Clone o projeto em sua máquina.
+   
+#### 2. Instale as dependências com o comando:
+```shell
 yarn install
-````
-
+```
 
 **Atenção:** é necessário utilizar o `yarn` pois esse projeto foi iniciado com esse gerenciador de pacotes.
 
@@ -20,24 +30,33 @@ Caso não possua o yarn instalado, utilize o comando abaixo para instalar global
 ````
 npm install --global yarn
 ````
+
 <br>
 
+#### 3. Run
 
-Essa entrega já está com o Docker configurado, basta preencher as variáveis de ambiente no .env
-
-Basta buildar e subir nossos containers usando o comando padrão:
-````
+a API já está com o **Docker** configurado por isso você precisa do **Docker** e **docker-compose** instalados na sua máquina.
+Siga os passos abaixo para startar a API localmente:
+```
 docker-compose up --build
 ````
 
 ou
-````
+```
 docker compose up --build
-````
+```
+
 O comando pode variar com a versão do docker compose instalada em sua máquina
 
-***ATENÇÃO:*** a porta utilizada para rodar nosso docker é a `5431`.
+***ATENÇÃO:*** a porta utilizada para rodar nosso docker é a `5436`.
 Caso tenha algum problema com essa porta, basta alterá-la no docker-compose.yml.
+
+#### 4. Migrations
+
+Execute as migrations com os comandos:
+```
+docker exec -it api yarn typeorm migration:run -d src/data-source.ts
+```
 
 <br>
 
@@ -60,7 +79,7 @@ E também não altere o script de `test` localizado no `package.json`. Isso ser�
 <br>
 
 
-# **Rodando os testes** 
+## **Rodando os testes** 
 
 Para rodar os testes é necessário que no seu terminal, você esteja dentro do diretório do projeto.
 
@@ -100,18 +119,5 @@ yarn test -t <describe ou test específico envolto em aspas>
 
 <br>
 
-
-**Caso você queira verificar todas as opções de execução de testes, visite a [Documentação oficial do Jest](https://jestjs.io/docs/cli)**
-
-Após rodar um dos comandos aparecerá um log no seu terminal, contendo as informações da execução do teste.
-
-**Observação:** O teste pode demorar alguns segundos para ser finalizado. Quanto maior for o teste, mais tempo será consumido para a execução.
-
-#
-
-
-
-### Agora que já sabe como iniciar o seu projeto e rodar os testes, é hora de colocar a mão no código!
-
-- #### Diagrama DER
+#### Diagrama DER
 ![image](https://user-images.githubusercontent.com/80117189/219662120-0f4a9d45-1c7c-426e-82b5-5b71a38aa031.png)
